@@ -64,16 +64,11 @@ LIST
 
 Example input for MOVE
 ```
-CREATE fruit/apple
-CREATE fruit/gala
-
 MOVE fruit/gala fruit/apple 
 ```
 
 Example input for DELETE
 ```
-CREATE fruit/apple
-
 DELETE fruit/apple
 ```
 
