@@ -1,6 +1,6 @@
 import sys
 
-from util.log import setup_logger
+from utils.log import setup_logger
 from data.file_system import FileSystem
 
 COMMANDS = ["CREATE", "LIST", "MOVE", "DELETE"]
