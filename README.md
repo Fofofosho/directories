@@ -2,6 +2,8 @@
 
 This project is a command-line script that supports an in-memory directory structure. It handles input for directory actions and does not interact with the host system.
 
+**If not interested running the code, to see a recent execution, compare a [result log file](logs/) with the [expected-output.txt](test/expected-output.txt).**
+
 ## Setup
 
 To get setup, use and install the python package and project manager [uv](https://docs.astral.sh/uv). Or use Python 3.12+ directly
@@ -11,25 +13,33 @@ To get setup, use and install the python package and project manager [uv](https:
 - if you don't have `uv`, install using brew or curl
   - `brew install uv`
   - `curl -LsSf https://astral.sh/uv/install.sh | sh`
-- run `uv` just to validate it is working
-- run a sync in the root directory of this project: `uv sync`
-  - This will install the specific version of python for the project as well as install any dependencies
-- execute the program: `uv run directories.py -f test/input.txt`
+- run `uv` just to validate it installed
+- run the setup
+  - `uv venv` - this will setup a virtual environment for the project and automatically install or use the suggested python version.
+  - `uv sync` - syncing ensures that all project dependencies are installed and up-to-date with the lockfile.
+- execute the program, output will be in stdin and as a file in the recent log file in [logs/](logs)
+
+```sh
+uv run directories.py -f test/input.txt
+```
 
 ### With python3
 
-- Ensure you have python 3.12+
-- `python3 directories.py -f test/input.txt`
+- If not using uv, ensure you have python 3.12+ or YMMV
 
-## Usage
+```sh
+python3 directories.py -f test/input.txt
+```
 
-Two ways to use the program. 
+## Running locally
+
+Two ways to use the program:
 1. File input
 2. Using stdin
 
 ### File Input
 
-Provide an input file and the results will get 
+Provide the suggested input file and the results will get printed to stdin and a log file in [logs](logs/). Input file will be a flag with `-f test/input.txt`.
 
 ### Stdin
 
@@ -65,6 +75,15 @@ Example input for DELETE
 CREATE fruit/apple
 
 DELETE fruit/apple
+```
+
+## Pytest
+
+Repo has pytest setup to automatically run an execution given the [input.txt](test/input.txt) file and validate the most recent log file with the expected [output.txt](test/output.txt) file.
+
+Running the test is just (if using uv this will just work):
+```sh
+pytest
 ```
 
 ## Expected Results
